@@ -13,8 +13,16 @@ app.get('/home',(req,res)=>{
       age: 21,
       location: 'khotang'
    }
+   const nepal = {
+    country :'Nepal',
+    continent : 'Asia',
+    nickName : 'Land of Himalayas'
+
+   }
+
    res.render("home.ejs",{
-    data,
+    ram : data,
+    laxman : nepal
     
    })
 })
@@ -22,6 +30,8 @@ app.get('/home',(req,res)=>{
 app.get('/about',(req,res)=>{
     res.render("about.ejs")
 })
+
+app.use(express.static('public/css/'))//given access to content of public/css folder
 
 app.listen(3000,()=>{
     console.log("Prem se Bolo Radhe Radhe!")

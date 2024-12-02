@@ -1,9 +1,9 @@
-const express = require('express') //express lai node_module  nata nikalera express vanne vadama rakhe
+const express = require('express') //express lai node_module  bata nikalera express vanne vadama rakhe
 const app = express()
-
-
-app.set('view engine','ejs')//expresslai maile ejs use garna laako 
-                          // yesko laagi required sabai environments(configuration) set garde vaneko 
+require('dotenv').config()//ma dotenv use gariraxu sabai reqd config set garde vane
+app.set('view engine','ejs')//expresslai maile ejs use garna laako yesko laagi required sabai environments(configuration) set garde vaneko 
+                           
+require("./model/index") //Database connection
 
 
 

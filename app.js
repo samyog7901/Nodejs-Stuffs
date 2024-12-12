@@ -1,6 +1,15 @@
 require('dotenv').config()//ma dotenv use gariraxu sabai reqd config set garde vane
 const express = require('express') //express lai node_module  bata nikalera express vanne vadama rakhe
-const { blogs } = require('./model/index')
+const { blogs, sequelize } = require('./model/index')
+// const multer = require('./middleware/multerConfig').multer
+// const storage = require('./middleware/multerConfig').storage
+const {multer,storage} = require('./middleware/multerConfig')
+const upload = multer({ storage: storage })
+
+
+
+
+
 const app = express()
 
 
@@ -14,12 +23,13 @@ app.get("/create",(req,res)=>{
     res.render('create.ejs')//UI dekhaune code
 })
 
-app.post("/create",async (req,res)=>{
+//api
+app.post("/create",upload.single('image'),async (req,res)=>{
    const {title, subtitle,description} = req.body
     await blogs.create({
         title,
         subtitle,
-        description
+        description,
     })
     res.send("Blog added succesfully.")
 })

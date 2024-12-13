@@ -19,22 +19,42 @@ app.set('view engine','ejs')//expresslai maile ejs use garna laako yesko laagi r
                            
 require("./model/index") //Database connection
 
+app.get("/",async (req,res)=>{
+    const datas = await blogs.findAll()//select * from blogs //data fetch garyo db ko tablebata ,findAll() returns array
+    res.render("home",{blogs : datas})//home.ejs ma fetched data pass garyo
+})
+
+app.get("/blog/:id",async(req,res)=>{
+    const id = req.params.id //id pakadyo
+    const blog = await blogs.findByPk(id)//returns object
+    res.render("singleBlog",{blog : blog})
+})
+
+app.get("/delete/:id",async(req,res)=>{
+    const id = req.params.id
+    await blogs.destroy({where : {id : id}})//delete query
+    res.redirect("/")
+})
+
 app.get("/create",(req,res)=>{
     res.render('create.ejs')//UI dekhaune code
 })
 
 //api
 app.post("/create",upload.single('image'),async (req,res)=>{
+   const filename = req.file.filename
    const {title, subtitle,description} = req.body
     await blogs.create({
         title,
         subtitle,
         description,
+        image: filename
     })
     res.send("Blog added succesfully.")
 })
 
 app.use(express.static('public/css/'))//given access to content of public/css folder
+app.use(express.static('./storage/'))
 
 app.listen(3000,()=>{
     console.log("Prem se Bolo Radhe Radhe!")

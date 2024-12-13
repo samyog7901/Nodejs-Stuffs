@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Details</title>
+    <link rel="stylesheet" href="/singleBlog.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#">MyWebsite</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="blog-details-container">
+            <div class="blog-image">
+                <img src="http://localhost:3000/<%- blog.image %>" alt="Blog Image">
+            </div>
+            <div class="blog-content">
+                <h1 class="blog-title"><%- blog.title %></h1>
+                <p class="blog-subtitle"><%- blog.subtitle %></p>
+                <p class="blog-description"><%- blog.description %></p>
+                <div class="blog-footer">
+                    <a class="delete-button" href="/delete/<%- blog.id %>">Delete Me</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

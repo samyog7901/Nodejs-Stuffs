@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage with Navbar and Cards</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#">MyWebsite</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Welcome to Our Website</h1>
+        <div class="card-container">
+           <% blogs.forEach(function(blog){ %>
+                <div class="card">
+                <img src="<%- blog.image %>" alt="Image 1">
+                <div class="card-title"><%- blog.title %></div>
+                <a href="/blog/<%- blog.id %>">Read more..</a>
+            </div>
+
+            <% }) %>
+            
+        </div>
+    </div>
+</body>
+</html>

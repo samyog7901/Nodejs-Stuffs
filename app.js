@@ -1,11 +1,13 @@
 require('dotenv').config()//ma dotenv use gariraxu sabai reqd config set garde vane
 const express = require('express') //express lai node_module  bata nikalera express vanne vadama rakhe
-const { blogs, sequelize } = require('./model/index')
+const { blogs, sequelize, users } = require('./model/index')
 // const multer = require('./middleware/multerConfig').multer
 // const storage = require('./middleware/multerConfig').storage
 const {multer,storage} = require('./middleware/multerConfig')
 const upload = multer({ storage: storage })
-
+const bcrypt = require("bcrypt")
+const { homePage, singleBlog,deleteBlog, updateBlog, createForm, createBlog } = require('./controller/blogController')
+const { registerUser, loginUser, renderRegister, renderLogin } = require('./controller/authController')
 
 
 
@@ -19,39 +21,47 @@ app.set('view engine','ejs')//expresslai maile ejs use garna laako yesko laagi r
                            
 require("./model/index") //Database connection
 
-app.get("/",async (req,res)=>{
-    const datas = await blogs.findAll()//select * from blogs //data fetch garyo db ko tablebata ,findAll() returns array
-    res.render("home",{blogs : datas})//home.ejs ma fetched data pass garyo
-})
+app.get("/",homePage)
 
-app.get("/blog/:id",async(req,res)=>{
-    const id = req.params.id //id pakadyo
-    const blog = await blogs.findByPk(id)//returns object
-    res.render("singleBlog",{blog : blog})
-})
+app.get("/blog/:id",singleBlog)
 
-app.get("/delete/:id",async(req,res)=>{
-    const id = req.params.id
-    await blogs.destroy({where : {id : id}})//delete query
-    res.redirect("/")
-})
+app.get("/delete/:id",deleteBlog)
 
-app.get("/create",(req,res)=>{
-    res.render('create.ejs')//UI dekhaune code
-})
+app.get("/update/:id",updateBlog)
+app.post('/blog/:id', async (req, res) => {
+    const id = req.params.id;
+    const {title, subtitle,description} = req.body 
 
+    try {
+
+        await blogs.update({
+            title  ,
+            subtitle,
+            description
+        },{
+            where : {
+                id : id
+            }
+        })
+
+        // Redirect back to the blog's details page (or wherever you want)
+        res.redirect(`/blog/${id}`); 
+    } catch (error) {
+        console.error('Error updating blog:', error);
+        res.status(500).json({ error: 'Failed to update blog.' }); 
+    }
+}); 
+
+app.get("/create",createForm)
 //api
-app.post("/create",upload.single('image'),async (req,res)=>{
-   const filename = req.file.filename
-   const {title, subtitle,description} = req.body
-    await blogs.create({
-        title,
-        subtitle,
-        description,
-        image: filename
-    })
-    res.send("Blog added succesfully.")
-})
+app.post("/create",upload.single('image'),createBlog)
+
+app.get("/register",renderRegister)
+app.post("/register",registerUser)
+
+app.get("/login",renderLogin)
+app.post("/login",loginUser)
+
 
 app.use(express.static('public/css/'))//given access to content of public/css folder
 app.use(express.static('./storage/'))

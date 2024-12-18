@@ -149,6 +149,26 @@ h1 {
     background-color: #c0392b;
 }
 
+.edit-button {
+    background-color: blue;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    display: inline-block;
+    text-align: center;
+    }
+
+.edit-button:hover {
+    background-color: rgb(77, 77, 205);
+}
+.blog-footer{
+    display: flex;
+    justify-content: space-between;
+}
+
 /* Media Query for Mobile */
 @media screen and (max-width: 768px) {
     .blog-details-container {
@@ -173,5 +193,10 @@ h1 {
     .delete-button {
         font-size: 16px;
         padding: 10px 20px;
+    }
+    .edit-button{
+        font-size: 16px;
+        padding: 10px 20px;
+        margin-left: 15rem;
     }
 }

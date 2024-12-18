@@ -10,7 +10,6 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">
-            <a href="#">MyWebsite</a>
         </div>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
@@ -31,7 +30,8 @@
                 <p class="blog-subtitle"><%- blog.subtitle %></p>
                 <p class="blog-description"><%- blog.description %></p>
                 <div class="blog-footer">
-                    <a class="delete-button" href="/delete/<%- blog.id %>">Delete Me</a>
+                    <a class="delete-button" type="button" href="/delete/<%- blog.id %>">Delete Me</a>
+                    <a class="edit-button" type="button" href="/update/<%- blog.id %>">Edit Me</a>
                 </div>
             </div>
         </div>

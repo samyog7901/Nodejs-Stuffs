@@ -3,7 +3,7 @@ const { renderRegister, registerUser, renderLogin, loginUser } = require("../con
 const router = require("express").Router()
 
 router.route("/register").get(renderRegister).post(registerUser)
-router,route("/login").get(renderLogin).post(loginUser)
+router.route("/login").get(renderLogin).post(loginUser)
 
 
 

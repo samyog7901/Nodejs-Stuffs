@@ -17,7 +17,7 @@ exports.deleteBlog = async(req,res)=>{
     res.redirect("/")
 }
 
-exports.updateBlog = async(req,res)=>{
+exports.renderUpdateBlog = async(req,res)=>{
     const id = req.params.id 
     const blog = await blogs.findAll({
         where : {
@@ -27,6 +27,31 @@ exports.updateBlog = async(req,res)=>{
     res.render("editBlog",{blog : blog})
 
 }
+exports.updateBlog =  async (req,res) => {
+    const id = req.params.id;
+    const {title,subtitle,description} = req.body 
+
+    try {
+
+        await blogs.update({
+            title,
+            subtitle,
+            description
+        },{
+            where : {
+                id : id
+            }
+        })
+
+        // Redirect back to the blog's details page (or wherever you want)
+        res.redirect(`/blog/${id}`)
+    } catch (error) {
+        console.error('Error updating blog:', error);
+        res.status(500).json({ error: 'Failed to update blog.' }); 
+    }
+}
+
+
 
 exports.createForm = (req,res)=>{
     res.render('create.ejs')//UI dekhaune code

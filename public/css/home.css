@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f8f8f8;
+    margin-top: 100px;
 }
 
 h1 {
@@ -18,7 +19,12 @@ h1 {
     justify-content: space-between;
     align-items: center;
     background-color: #333;
-    padding: 15px 30px;
+    padding: 15px 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
 }
 
 
@@ -26,11 +32,16 @@ h1 {
     color: white;
     font-size: 24px;
     text-decoration: none;
+    transition: color 0.3s;
+}
+.navbar .logo a:hover {
+    color: #f39c12;
 }
 
 .navbar .nav-links {
     list-style-type: none;
     display: flex;
+
 }
 
 .navbar .nav-links li {
@@ -48,6 +59,7 @@ h1 {
     color: #f39c12;
 }
 
+
 /* Main Content and Card Container Styles */
 .main-content {
     text-align: center;
@@ -59,8 +71,6 @@ h1 {
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
 }
 
 .card {

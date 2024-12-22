@@ -58,7 +58,14 @@ exports.createForm = (req,res)=>{
 }
 
 exports.createBlog = async (req,res)=>{
-    const filename = req.file.filename
+    let filename;
+    if(req.file){
+        filename = req.file.filename
+    }
+    else{
+        filename = ""
+    }
+    // const filename = req.file.filename
     const {title, subtitle,description} = req.body
      await blogs.create({
          title,

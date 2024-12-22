@@ -1,5 +1,5 @@
 const { blogs, users } = require("../model")
-const bcrypt = require("../bcrypt")
+const bcrypt = require("bcrypt")
 
 exports.renderRegister = (req,res)=>{
     res.render("register")

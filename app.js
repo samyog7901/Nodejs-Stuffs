@@ -26,6 +26,6 @@ app.use('/',authRoute)
 app.use(express.static('public/css/'))//given access to content of public/css folder
 app.use(express.static('./storage/'))
 
-app.listen(3000,()=>{
-    console.log("Prem se Bolo Radhe Radhe!")
-})
+// app.listen(3000,()=>{
+//     console.log("Prem se Bolo Radhe Radhe!")
+// })

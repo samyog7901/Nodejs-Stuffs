@@ -99,3 +99,62 @@ h1 {
 .card:hover {
     transform: translateY(-10px);
 }
+/* Register User Styles */
+.register {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.register a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #f39c12;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.register a:hover {
+    background-color: #e67e22;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.register a:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+/* Upload New Blog Styles */
+.addBlog {
+    margin: 40px 0;
+    
+    text-align: center;
+}
+
+.addBlog a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.addBlog a:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.addBlog a:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
